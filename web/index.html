@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sybertoooth7 — Security engineering & compliance platforms</title>
+<meta name="description" content="Independent security engineer. I build compliance and security-operations platforms end to end — ALUXPLAZA is a standards-based cybersecurity SaaS for SMEs in East Africa, grounded in NIST SP 800-61, PCI DSS and the Kenya Data Protection Act 2019.">
+<meta name="author" content="sybertoooth7">
+<meta property="og:title" content="sybertoooth7 — Security engineering & compliance platforms">
+<meta property="og:description" content="Independent security engineer building verifiable compliance and security-operations platforms. 988 commits, 18,490 lines, one maintainer.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0d10'/%3E%3Cpath d='M16 4l9 4v7c0 6-4 9-9 13-5-4-9-7-9-13v-7z' fill='none' stroke='%235ce8bd' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#lead">Skip to content</a>
+
+<header class="topbar" id="top">
+  <div class="wrap topbar-inner">
+    <a class="ident" href="#top">
+      <svg class="shield" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l9 4v7c0 6-4 9-9 13-5-4-9-7-9-13v-7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 16l3.5 3.5L21 13" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>sybertoooth7</span>
+    </a>
+    <nav aria-label="Sections">
+      <ul class="nav">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#posture">Posture</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#tooling">Tooling</a></li>
+        <li><a href="#evidence">Evidence</a></li>
+        <li><a href="#gaps">Known gaps</a></li>
+        <li><a class="nav-cta" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- 00 — lead / readout -->
+  <section class="lead" id="lead">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Independent security engineer · open to contract work</p>
+      <h1>I build security platforms<br>that can <em>prove</em> they work.</h1>
+      <p class="deck">
+        Not a slide about compliance — the running system. ALUXPLAZA is a multi-tenant
+        cybersecurity consultancy platform for SMEs: client portal, admin operations console,
+        an in-house request scanner, and a compliance checklist that computes a real risk score.
+        Built alone, end to end, in thirteen weeks.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:sybertoooth7@gmail.com">Start a conversation</a>
+        <a class="btn" href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">Read the source</a>
+      </div>
+
+      <div class="readout" aria-label="Repository measurements">
+        <div class="stat"><span class="stat-n" data-count="988">988</span><span class="stat-l">commits, sole author</span></div>
+        <div class="stat"><span class="stat-n" data-count="18490">18,490</span><span class="stat-l">lines of app code</span></div>
+        <div class="stat"><span class="stat-n" data-count="18">18</span><span class="stat-l">endpoints in OpenAPI</span></div>
+        <div class="stat"><span class="stat-n" data-count="28">28</span><span class="stat-l">SQL migrations</span></div>
+        <div class="stat"><span class="stat-n" data-count="26">26</span><span class="stat-l">test files</span></div>
+        <div class="stat"><span class="stat-n" data-count="5">5</span><span class="stat-l">CI pipelines</span></div>
+      </div>
+      <p class="fineprint">Every figure on this page was measured from <code>github.com/sybertoooth7-lgtm/ALUXPLAZA</code> on 17 Oct 2026. Nothing here is estimated.</p>
+    </div>
+  </section>
+
+  <!-- 01 — case study -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">01</span>
+        <h2>Case study — ALUXPLAZA</h2>
+        <span class="sec-tag">full stack · Node 24 · React 19</span>
+      </div>
+
+      <div class="case">
+        <div class="case-body">
+          <h3>The problem</h3>
+          <p>
+            Small and mid-size businesses in East Africa are expected to meet the same
+            obligations as everyone else — <strong>PCI DSS</strong>, the
+            <strong>Kenya Data Protection Act 2019</strong>, incident-response practice per
+            <strong>NIST SP 800-61</strong> — but can't afford a retained consultancy to
+            tell them where they stand. The assessment ends up as a PDF nobody re-reads.
+          </p>
+          <h3>What I built</h3>
+          <p>
+            A platform that keeps the assessment <em>live</em>. Clients sign up with verified
+            email, work a compliance checklist against multiple frameworks, and get a computed
+            risk score with a shareable verification link that a third party can check without
+            an account. On the other side, an admin console shows platform-wide compliance,
+            per-client risk, contact triage, active IP blocks with one-click unblock, and a
+            filterable security-event feed.
+          </p>
+          <ul class="ticks">
+            <li>Two authorisation contexts, deliberately separated — admin and client tokens never share a cookie.</li>
+            <li>Attack traffic is detected, logged and scored by the platform itself, not a SaaS bolted on the front.</li>
+            <li>Rate limiting and queueing run on Postgres. One datastore, no Redis to operate or bill for.</li>
+            <li>Ten written service methodologies and client deliverable templates ship in <code>docs/</code>.</li>
+          </ul>
+          <h3>Stack</h3>
+          <p class="chips">
+            <span>Express 5 (ESM)</span><span>PostgreSQL</span><span>pg-boss</span><span>JWT + double-submit CSRF</span><span>helmet</span><span>pino</span><span>React 19</span><span>Vite</span><span>TypeScript</span><span>Tailwind</span><span>Vitest + supertest</span><span>Sentry</span>
+          </p>
+        </div>
+
+        <div class="case-figs">
+          <figure>
+            <img src="assets/admin-dashboard.png" alt="ALUXPLAZA admin dashboard showing compliance overview, client list and security events" width="1875" height="1648" loading="lazy">
+            <figcaption>
+              <span class="tag tag-sample">sample data</span>
+              Admin console — compliance overview, client list, security events. Rendered from the
+              project's own mockup with sample data; not a live client's records.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/architecture-diagram.svg" alt="ALUXPLAZA system architecture diagram" loading="lazy">
+            <figcaption><span class="tag tag-verified">repo asset</span> System architecture, from <code>docs/architecture-diagram.svg</code>.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="verif">
+        <h4>Verification log</h4>
+        <ul>
+          <li><span class="tag tag-verified">checked 17 Oct</span> Repository reachable, 988 commits, single author, first commit 2026-07-17.</li>
+          <li><span class="tag tag-warn">not passing</span> The documented frontend deployment <code>jinarous.vercel.app</code> returned <strong>HTTP 404</strong> when tested on 17 Oct 2026. I have no live URL to hand you today — the source is the demonstration.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — posture -->
+  <section id="posture">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">02</span>
+        <h2>Security posture — how it defends itself</h2>
+        <span class="sec-tag">the platform sells security, so it runs on it</span>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Request scanner, in-house</h3>
+          <p>A five-module shield inspects every request: signature <em>detector</em>, IP
+             <em>blocklist</em>, <em>brute-force guard</em>, <em>event logger</em> and a
+             <em>risk score</em> that turns observed abuse into a number an admin can act on.</p>
+          <code class="ref">backend/src/shield/{detector,blocklist,bruteForceGuard,eventLogger,riskScore}.js</code>
+        </article>
+
+        <article class="card">
+          <h3>Split token contexts</h3>
+          <p>Two cookies — <code>adminToken</code> and <code>clientToken</code> — so a client
+             credential can never be replayed against an admin route, and token confusion is
+             structurally impossible rather than policy-enforced.</p>
+          <code class="ref">README.md § Features · backend middleware</code>
+        </article>
+
+        <article class="card">
+          <h3>CSRF + auth hardening</h3>
+          <p>Double-submit-cookie CSRF, bcrypt password hashing, account lockout with escalating
+             timeouts, and authentication responses that don't leak whether an account exists.</p>
+          <code class="ref">SECURITY_ARCHITECTURE.md § Trust Boundaries</code>
+        </article>
+
+        <article class="card">
+          <h3>Rate limiting without Redis</h3>
+          <p>Limits are enforced in Postgres, so the constraint survives a restart and one service
+             holds both state and quota. Boot-time config validation refuses weak signing secrets
+             (≥32 chars, no dictionary words).</p>
+          <code class="ref">backend/src/lib · backend/src/config.js</code>
+        </article>
+
+        <article class="card">
+          <h3>Audit trail as a first-class surface</h3>
+          <p>Middleware-level audit and login logging feed a filterable security-events view, so
+             “what happened and to whom” is answerable without a log-aggregation vendor.</p>
+          <code class="ref">backend/src/middleware · AdminSecurity.tsx</code>
+        </article>
+
+        <article class="card">
+          <h3>Pipeline guards</h3>
+          <p>CodeQL SAST and gitleaks secret scanning run as dedicated workflows alongside split
+             backend and frontend CI — a broken API check doesn't hide a broken UI build, or the
+             other way round.</p>
+          <code class="ref">.github/workflows/{ci,backend-ci,frontend-ci,codeql,gitleaks}.yml</code>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — services -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">03</span>
+        <h2>Engagements I can run</h2>
+        <span class="sec-tag">each backed by a written methodology in the repo</span>
+      </div>
+
+      <div class="grid grid-2 svc">
+        <div>
+          <h3>Assess &amp; test</h3>
+          <ul>
+            <li><span>Vulnerability assessment</span><code>vulnerability-assessment-methodology.md</code></li>
+            <li><span>Access-control audit</span><code>access-control-audit-methodology.md</code></li>
+            <li><span>Network hardening review</span><code>network-hardening-methodology.md</code></li>
+            <li><span>Backup &amp; encryption review</span><code>backup-encryption-methodology.md</code></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Respond &amp; monitor</h3>
+          <ul>
+            <li><span>Incident response</span><code>incident-response-service-methodology.md</code></li>
+            <li><span>Threat intelligence</span><code>threat-intel-methodology.md</code></li>
+            <li><span>Honeypot monitoring</span><code>honeypot-monitoring-methodology.md</code></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Compliance &amp; forward risk</h3>
+          <ul>
+            <li><span>Compliance readiness</span><code>compliance-readiness-methodology.md</code></li>
+            <li><span>LLM / AI security review</span><code>llm-security-review-methodology.md</code></li>
+            <li><span>Post-quantum readiness</span><code>pqc-readiness-methodology.md</code></li>
+          </ul>
+        </div>
+        <div>
+          <h3>You leave with documents, not vibes</h3>
+          <ul class="deliv">
+            <li>Incident response plan template <em>.docx</em></li>
+            <li>Compliance readiness checklist <em>.xlsx</em></li>
+            <li>Sample threat-intelligence briefing <em>.docx</em></li>
+            <li>Breach response &amp; compliance mapping <em>.md</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — tooling -->
+  <section id="tooling">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">04</span>
+        <h2>Audit tooling I wrote</h2>
+        <span class="sec-tag">standalone, runs against your estate on day one</span>
+      </div>
+
+      <div class="tools">
+        <div class="tool"><code>auth_audit.py</code><span>Authentication flow audit</span></div>
+        <div class="tool"><code>auth_audit_http.py</code><span>HTTP-layer auth checks</span></div>
+        <div class="tool"><code>vuln_assessment.py</code><span>Vulnerability assessment runner</span></div>
+        <div class="tool"><code>network_audit.py</code><span>Network configuration audit</span></div>
+        <div class="tool"><code>backup_audit.py</code><span>Backup &amp; recovery audit</span></div>
+        <div class="tool"><code>secrets_scanner.py</code><span>Secrets discovery</span></div>
+        <div class="tool"><code>llm_security_review.py</code><span>LLM application security review</span></div>
+        <div class="tool"><code>pqc_readiness.py</code><span>Post-quantum cryptography readiness</span></div>
+        <div class="tool"><code>honeypot.js</code><span>Honeypot listener</span></div>
+        <div class="tool"><code>report.js</code><span>Honeypot reporting pair</span></div>
+      </div>
+      <p class="fineprint">Source: <code>tools/</code> in the repository.</p>
+    </div>
+  </section>
+
+  <!-- 05 — evidence -->
+  <section id="evidence">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">05</span>
+        <h2>Engineering evidence</h2>
+        <span class="sec-tag">what a reviewer would check</span>
+      </div>
+
+      <div class="evid">
+        <table>
+          <caption class="sr-only">Verified repository measurements</caption>
+          <thead>
+            <tr><th scope="col">Claim</th><th scope="col">Measured</th><th scope="col">Where</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Application code written</td><td>18,490 lines</td><td><code>backend/src</code>, <code>frontend/src</code>, <code>tools</code>, <code>scripts</code> — JS/TS/JSX/TSX/Python/SQL</td></tr>
+            <tr><td>Schema evolution</td><td>28 migrations</td><td><code>backend/migrations/*.sql</code>, sequential and idempotent, auto-applied on boot</td></tr>
+            <tr><td>Automated tests</td><td>26 + 1</td><td>26 Vitest + supertest files run against a real Postgres instance — no mocked persistence — plus a Playwright e2e spec at <code>frontend/e2e/</code></td></tr>
+            <tr><td>Documented API</td><td>18 endpoints</td><td><code>backend/openapi.yaml</code>, public and client-authenticated routes with schemas; 17 route modules in <code>backend/src/routes/</code></td></tr>
+            <tr><td>Continuous integration</td><td>5 workflows</td><td>CI, split backend/frontend CI, CodeQL, gitleaks</td></tr>
+            <tr><td>Client routes</td><td>32 pages</td><td><code>frontend/src/pages/</code> — one file per route: portal, admin, verification and public marketing</td></tr>
+            <tr><td>Build-time guardrails</td><td>fail-fast env check</td><td><code>prebuild</code> runs <code>frontend/scripts/check-env.js</code>, refusing a production build with no API base URL</td></tr>
+            <tr><td>Runtime pinning</td><td>Node 24.x</td><td>Root <code>.nvmrc</code> + <code>engines</code> in both packages; CI and prod images agree</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — gaps -->
+  <section id="gaps">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">06</span>
+        <h2>What I'd tell a client is still weak</h2>
+        <span class="sec-tag">self-reported, from my own threat model</span>
+      </div>
+      <p class="lede">
+        A security engineer who says their system is finished is the one to avoid.
+        <code>SECURITY_ARCHITECTURE.md</code> is a roadmap I wrote against my own build, and
+        these are the open items on it:
+      </p>
+      <div class="grid grid-2 gaplist">
+        <div class="gap"><h4>Distributed attack detection is observe-only</h4><p>The shield detects and logs, but doesn't yet coordinate a block across instances. Phase 3 on the roadmap.</p></div>
+        <div class="gap"><h4>No request correlation or tracing</h4><p>Events can't be stitched into one attack narrative by trace ID yet. Phase 4, architectural.</p></div>
+        <div class="gap"><h4>Token blocklist lives in memory</h4><p>Ephemeral state — revocation doesn't survive a restart or scale horizontally. Phase 1, critical.</p></div>
+        <div class="gap"><h4>Alert fatigue &amp; stale security state</h4><p>Event noise isn't tuned and old state isn't reaped in the background. Phase 2, operational.</p></div>
+      </div>
+      <p class="fineprint">Also honest: middleware ordering isn't made explicit, and formal security regression tests are a named gap rather than a solved one.</p>
+    </div>
+  </section>
+
+  <!-- 07 — contact -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">07</span>
+        <h2>Work with me</h2>
+        <span class="sec-tag">assessments, incident response, or building the platform</span>
+      </div>
+      <p class="lede">
+        Tell me the framework you have to satisfy, the system it applies to, and the date it's
+        due. I'll come back with what's realistic and what the evidence will look like at the end.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:sybertoooth7@gmail.com">sybertoooth7@gmail.com</a>
+        <a class="btn" href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">github.com/sybertoooth7-lgtm/ALUXPLAZA</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>sybertoooth7 — security engineering &amp; compliance platforms.</p>
+    <p>Figures measured from the ALUXPLAZA repository on 17 October 2026. Project is MIT-licensed.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
