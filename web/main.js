@@ -37,7 +37,6 @@
     var target = parseInt(el.getAttribute('data-count'), 10);
     if (!isFinite(target)) return;
     var start = null, dur = 900;
-    el.textContent = '0';
     var tick = function (now) {
       if (start === null) start = now;
       var p = Math.min((now - start) / dur, 1);
@@ -47,7 +46,12 @@
       else el.textContent = target.toLocaleString('en-US');
     };
     var io = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { io.disconnect(); requestAnimationFrame(tick); }
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      /* Blank it only once the figure is on screen: if rAF never runs, the real
+         number is what a visitor is left looking at. */
+      el.textContent = '0';
+      requestAnimationFrame(tick);
     });
     io.observe(el);
   });
