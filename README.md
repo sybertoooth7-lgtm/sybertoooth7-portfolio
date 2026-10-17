@@ -13,11 +13,14 @@ someone who will check the claims.
   a reader can re-run every claim instead of taking it on trust.
 - **Ambiguous claims are footnoted, not smoothed over.** "Sole author" comes with the
   `git shortlog` breakdown behind three different committer identities; "28 migrations"
-  explains why the numbering runs to 029.
+  explains why the numbering runs to 029; the Codecov figure is labelled as the backend
+  suite only, because the frontend has no coverage job to average it against.
 - **It publishes its own weaknesses.** A "Known gaps" section is drawn from the project's
   own threat model, and the tooling section states what each audit script does *not* catch.
-- **It records failed checks.** The case study notes that ALUXPLAZA's documented deployment
-  returned HTTP 404 when tested, rather than linking a dead URL as a live demo.
+- **It records failed checks.** Neither deployment ALUXPLAZA's README documents is reachable
+  today — the frontend returned HTTP 404 and the backend HTTP 503 from Render's own suspension
+  page — so the site says that in its verification log instead of linking dead URLs as a live
+  demo. The cause of the suspension is recorded as unconfirmed rather than guessed at.
 
 ## Layout
 

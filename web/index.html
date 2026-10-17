@@ -57,7 +57,7 @@
       <p class="mast-sub">Independent engineer · contract work · Kenya-focused</p>
       <dl class="mast-meta">
         <dt>Document set</dt><dd>17 October 2026</dd>
-        <dt>Revision</dt><dd>3 — first typesetting</dd>
+        <dt>Revision</dt><dd>4 — coverage and outage figures</dd>
         <dt>Source of all figures</dt><dd><a href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">ALUXPLAZA <span class="mono">@ 2a7786c</span></a></dd>
         <dt>Status</dt><dd class="ok">Open to enquiries</dd>
       </dl>
@@ -113,6 +113,7 @@
           <div><dt>Thirteen weeks</dt><dd>93 <span>days</span></dd><dt class="why">17 Jul — 17 Oct 2026</dt></div>
           <div><dt>Migrations</dt><dd>28</dd><dt class="why">001–029, numbering skips <code>008</code><sup class="fn"><a href="#fn2" id="fnref2">2</a></sup></dt></div>
           <div><dt>Tests</dt><dd>26 <span>+ 1 e2e</span></dd><dt class="why">Vitest + supertest against real Postgres</dt></div>
+          <div><dt>Backend coverage</dt><dd>71 <span>per cent</span></dd><dt class="why">measured by Codecov, not by me</dt></div>
           <div><dt>Documented API</dt><dd>18 <span>operations</span></dd><dt class="why">over 18 paths, 17 route modules</dt></div>
           <div><dt>Written methodology</dt><dd>20,550 <span>words</span></dd><dt class="why">10 service documents in <code>docs/</code></dt></div>
           <div><dt>CI</dt><dd>5 <span>workflows</span></dd><dt class="why">CI, split backend/frontend, CodeQL, gitleaks</dt></div>
@@ -166,10 +167,12 @@
           <dd>Repository reachable on 17 Oct 2026. 988 commits, first commit 2026-07-17, one person
             behind all of them.<sup class="fn"><a href="#fn1">1</a></sup></dd>
           <dt class="fail">Not passing</dt>
-          <dd>The frontend deployment the README documents, <code>jinarous.vercel.app</code>, returned
-            <strong>HTTP 404</strong> when tested on 17 Oct 2026. There is no live URL to hand you
-            today. The source is the demonstration, and I would rather say that plainly than let you
-            find it.<sup class="fn"><a href="#fn3" id="fnref3">3</a></sup></dd>
+          <dd>Neither deployment the README documents is reachable today. The frontend at
+            <code>jinarous.vercel.app</code> returned <strong>HTTP 404</strong>; the backend at
+            <code>alux-plaza-backend.onrender.com</code> returned <strong>HTTP 503</strong> with
+            Render's own “This service has been suspended” page. Both tested 17 Oct 2026. There is
+            no live URL to hand you. The source is the demonstration, and I would rather say that
+            plainly than let you find it.<sup class="fn"><a href="#fn3" id="fnref3">3</a></sup></dd>
         </dl>
       </section>
 
@@ -534,13 +537,14 @@
             <tr><td>Application code written</td><td>18,490 lines</td><td><code>backend/src</code>, <code>frontend/src</code>, <code>tools</code>, <code>scripts</code></td></tr>
             <tr><td>Schema evolution</td><td>28 migrations</td><td><code>backend/migrations/*.sql</code> — sequential, idempotent, applied at boot</td></tr>
             <tr><td>Automated tests</td><td>26 + 1</td><td>26 Vitest + supertest files against a real Postgres instance, no mocked persistence, plus a Playwright spec at <code>frontend/e2e/public-pages.spec.ts</code></td></tr>
+            <tr><td>Backend line coverage</td><td>71%</td><td>Codecov, <code>main</code> badge — measured by CI, not by me. The upload is <code>flags: backend</code> over <code>backend/coverage/lcov.info</code>; there is no frontend coverage job, so 71% is the server half<sup class="fn"><a href="#fn4" id="fnref4">4</a></sup></td></tr>
             <tr><td>Documented API</td><td>18 operations</td><td><code>backend/openapi.yaml</code> over 18 paths; 17 route modules in <code>backend/src/routes/</code></td></tr>
             <tr><td>Written methodology</td><td>20,550 words</td><td>10 files matching <code>docs/*-methodology.md</code>, plus the DPA mapping and breach procedure</td></tr>
             <tr><td>Continuous integration</td><td>5 workflows</td><td>CI, split backend/frontend CI, CodeQL, gitleaks</td></tr>
             <tr><td>Client routes</td><td>32 pages</td><td><code>frontend/src/pages/</code> — one file per route: portal, console, verification, public marketing</td></tr>
             <tr><td>Build-time guardrails</td><td>fail-fast env check</td><td><code>prebuild</code> runs <code>frontend/scripts/check-env.js</code>, refusing a production build with no API base URL</td></tr>
             <tr><td>Runtime pinning</td><td>Node 24</td><td>Root <code>.nvmrc</code> and <code>engines</code> in both packages; CI and production images agree</td></tr>
-            <tr><td>Licensing</td><td>MIT</td><td>A real <code>LICENSE</code> file, “MIT License, Copyright (c) 2026 sybertoooth7-lgtm”<sup class="fn"><a href="#fn4" id="fnref4">4</a></sup></td></tr>
+            <tr><td>Licensing</td><td>MIT</td><td>A real <code>LICENSE</code> file, “MIT License, Copyright (c) 2026 sybertoooth7-lgtm”<sup class="fn"><a href="#fn5" id="fnref5">5</a></sup></td></tr>
           </tbody>
         </table>
         </div>
@@ -573,6 +577,14 @@
 <span class="out">32</span>
 <span class="prompt">$</span> ls .github/workflows/*.yml | wc -l
 <span class="out">5</span>
+<span class="prompt">$</span> curl -s https://codecov.io/gh/sybertoooth7-lgtm/ALUXPLAZA/branch/main/graph/badge.svg \
+      | grep -oE '&gt;[0-9]+%&lt;/text&gt;' | tail -1
+<span class="out">&gt;71%&lt;/text&gt;</span>
+<span class="prompt">$</span> curl -s -o /dev/null -w '%{http_code}\n' https://jinarous.vercel.app
+<span class="out">404</span>
+<span class="prompt">$</span> curl -s -o /dev/null -w '%{http_code}\n' \
+      https://alux-plaza-backend.onrender.com/api/health
+<span class="out">503</span>
 <span class="prompt">$</span> git ls-remote origin main
 <span class="out">2a7786c…  refs/heads/main</span></code></pre>
         <p class="fineprint">One caveat on the OpenAPI figures, because it is the sort of thing a reviewer
@@ -772,18 +784,37 @@
               <a class="back" href="#fnref2">↩ back</a></p>
           </li>
           <li id="fn3">
-            <p>The 404 is recorded, not explained away. The deployment is documented in the README and
-              returned <code>HTTP 404</code> on <code>https://jinarous.vercel.app</code> when tested at
-              2026-10-17 (UTC). I have not attempted to distinguish an expired preview deployment from a
-              torn-down project, because that distinction does not change what a visitor can see today.
+            <p>Recorded, not explained away. <code>https://jinarous.vercel.app</code> returned
+              <code>HTTP 404</code>. <code>https://alux-plaza-backend.onrender.com/api/health</code>
+              returned <code>HTTP 503</code> in 2.0s with the body “This service has been suspended”.
+              That is Render's own suspension page rather than anything my code emits, so the outage is
+              a hosting fact, not a defect in the application — but I have not confirmed from outside
+              the account whether it is exhausted free-tier hours or an unclaimed service, and I am not
+              going to guess. Neither distinction changes what a visitor can reach today.
               <a class="back" href="#fnref3">↩ back</a></p>
           </li>
           <li id="fn4">
+            <p>The only third-party-measured number on this page, and the easiest to get wrong in two
+              directions. It is read off the <code>main</code> badge SVG, not from a dashboard I control:
+              CI's test job runs <code>npm run test:coverage</code> in <code>backend/</code> and uploads
+              <code>backend/coverage/lcov.info</code> to Codecov under <code>flags: backend</code>. So
+              71% describes the server suite. It is not a project-wide figure and cannot be turned into
+              one, because <code>test:coverage</code> exists only in <code>backend/package.json</code> —
+              the frontend has no coverage job to average it against. And it is line coverage: the share
+              of backend statements a test executes, which says nothing about whether those tests assert
+              anything worth asserting.</p>
+            <p>Reproduce: fetch the <code>main</code> badge SVG and take the last percentage in it —
+              <code>curl -s …/graph/badge.svg | grep -oE '&gt;[0-9]+%&lt;/text&gt;' | tail -1</code>,
+              which prints <code>&gt;71%&lt;/text&gt;</code>. The badge draws each label twice, once as a
+              shadow, hence <code>tail -1</code>.
+              <a class="back" href="#fnref4">↩ back</a></p>
+          </li>
+          <li id="fn5">
             <p>Checked by reading the file, not by trusting the badge in the README:
               <code>LICENSE</code> exists at the repository root and opens
               “MIT License / Copyright (c) 2026 sybertoooth7-lgtm”. This portfolio's <em>own</em>
               repository has no licence file yet, which is why the site says nothing about its terms.
-              <a class="back" href="#fnref4">↩ back</a></p>
+              <a class="back" href="#fnref5">↩ back</a></p>
           </li>
         </ol>
       </section>
