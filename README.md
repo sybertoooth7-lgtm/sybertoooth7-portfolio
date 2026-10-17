@@ -9,7 +9,11 @@ someone who will check the claims.
 
 - **Every figure is measured, not estimated.** The statistics and the engineering-evidence
   table were read out of the [ALUXPLAZA](https://github.com/sybertoooth7-lgtm/ALUXPLAZA)
-  repository and are dated on-page. Re-run the measurements before trusting them.
+  repository and are dated on-page. §8 prints the exact commands and their real output, so
+  a reader can re-run every claim instead of taking it on trust.
+- **Ambiguous claims are footnoted, not smoothed over.** "Sole author" comes with the
+  `git shortlog` breakdown behind three different committer identities; "28 migrations"
+  explains why the numbering runs to 029.
 - **It publishes its own weaknesses.** A "Known gaps" section is drawn from the project's
   own threat model, and the tooling section states what each audit script does *not* catch.
 - **It records failed checks.** The case study notes that ALUXPLAZA's documented deployment
@@ -20,8 +24,8 @@ someone who will check the claims.
 ```
 web/                    published directory — the whole site
   index.html            content
-  styles.css            design system (ink canvas, hairline grid, mono labels)
-  main.js               scroll-spy, reveal-on-scroll, stat count-up, enquiry composer
+  styles.css            typesetting — paper/ink report palette, print stylesheet
+  main.js               running contents list, appendix-on-print, enquiry composer
   assets/               project screenshot and architecture diagram
   robots.txt
   sitemap.xml
@@ -31,6 +35,23 @@ serve.mjs               loopback preview only — deliberately outside web/
 ```
 
 Plain HTML/CSS/JS. No build step, no dependencies, no framework.
+
+## Design
+
+Set as a technical report rather than a product landing page: paper field, Spectral for
+prose, IBM Plex Mono for every piece of metadata, rules instead of shadows, numbered
+sections with a running contents list, real endnotes, and `§` cross-references.
+
+Two deliberate absences:
+
+- **Nothing animates.** No reveal-on-scroll, no counting-up statistics. A document does
+  not need to perform; the figures are printed as measured.
+- **No card grid.** Structure comes from section numbering, table captions and marginal
+  file citations, so the same content reads as an argument rather than a feature matrix.
+
+`@media print` is a real target, not an afterthought: it drops the navigation and the form,
+writes external URLs inline after each link, keeps table headers with their rows, and
+`beforeprint` expands the migration appendix so a printed copy is complete.
 
 ## Run it locally
 
