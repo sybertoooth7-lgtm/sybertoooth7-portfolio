@@ -6,9 +6,37 @@
 <title>sybertoooth7 — Security engineering & compliance platforms</title>
 <meta name="description" content="Independent security engineer. I build compliance and security-operations platforms end to end — ALUXPLAZA is a standards-based cybersecurity SaaS for SMEs in East Africa, grounded in NIST SP 800-61, PCI DSS and the Kenya Data Protection Act 2019.">
 <meta name="author" content="sybertoooth7">
+<link rel="canonical" href="https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/">
+<meta name="theme-color" content="#0a0d10">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sybertoooth7 — Security engineering & compliance platforms">
+<meta name="twitter:description" content="Independent security engineer building verifiable compliance and security-operations platforms. 988 commits, 18,490 lines, one maintainer.">
 <meta property="og:title" content="sybertoooth7 — Security engineering & compliance platforms">
 <meta property="og:description" content="Independent security engineer building verifiable compliance and security-operations platforms. 988 commits, 18,490 lines, one maintainer.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "sybertoooth7",
+  "url": "https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/",
+  "email": "mailto:sybertoooth7@gmail.com",
+  "jobTitle": "Security Engineer",
+  "sameAs": [
+    "https://github.com/sybertoooth7-lgtm",
+    "https://github.com/sybertoooth7-lgtm/ALUXPLAZA"
+  ],
+  "knowsAbout": [
+    "Application security",
+    "Incident response",
+    "Kenya Data Protection Act 2019",
+    "PCI DSS",
+    "NIST SP 800-61",
+    "Compliance readiness"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,9 +55,10 @@
     <nav aria-label="Sections">
       <ul class="nav">
         <li><a href="#work">Work</a></li>
+        <li><a href="#compliance">Compliance</a></li>
         <li><a href="#posture">Posture</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#tooling">Tooling</a></li>
+        <li><a href="#builds">Builds</a></li>
         <li><a href="#evidence">Evidence</a></li>
         <li><a href="#gaps">Known gaps</a></li>
         <li><a class="nav-cta" href="#contact">Contact</a></li>
@@ -134,11 +163,56 @@
     </div>
   </section>
 
-  <!-- 02 — posture -->
-  <section id="posture">
+  <!-- 02 — compliance engineering -->
+  <section id="compliance">
     <div class="wrap">
       <div class="sec-head">
         <span class="sec-no">02</span>
+        <h2>Compliance engineering — mapped, not asserted</h2>
+        <span class="sec-tag">Kenya DPA 2019 · DP Regulations 2021 · PCI DSS · NIST SP 800-61</span>
+      </div>
+      <p class="lede">
+        <code>docs/COMPLIANCE_MAPPING.md</code> maps every control that actually exists in the
+        repository to the law and standards it is supposed to satisfy, then lists what is missing.
+        Each status was checked against a fresh pull of <code>main</code> with the file path
+        recorded; DPA section numbers were checked against the Act's published table of contents
+        and regulation numbers against Legal Notice 263 of 2021 on Kenya Law.
+      </p>
+
+      <div class="evid">
+        <table class="findings">
+          <caption class="sr-only">Compliance findings and their status</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Finding</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>4.1</td><td>Deleted contacts left personal data behind in <code>audit_logs</code></td><td><span class="st st-done">Done</span> rows scrubbed</td></tr>
+            <tr><td>4.2</td><td>No tooling for data-subject access or erasure requests</td><td><span class="st st-done">Done</span> export, erase + runbook</td></tr>
+            <tr><td>4.3</td><td>No consent captured at the point of collection</td><td><span class="st st-done">Done</span> notice wording still open (4.4)</td></tr>
+            <tr><td>4.4</td><td>Privacy policy missing processors, transfers, cookies, retention, rights</td><td><span class="st st-done">Merged</span> provider facts + lawyer review pending</td></tr>
+            <tr><td>4.5</td><td>No written breach-response procedure</td><td><span class="st st-done">Merged</span> contacts to fill, one dry run to do</td></tr>
+            <tr><td>4.6</td><td>Retention periods were vague and unenforced</td><td><span class="st st-partial">Merged, off</span> deletes only under <code>RETENTION_MODE=enforce</code></td></tr>
+            <tr><td>4.7</td><td>Audit-log integrity (tamper evidence)</td><td><span class="st st-gap">Gap</span> optional, lower priority</td></tr>
+            <tr><td>4.8</td><td>Disabled accounts kept working until the session expired</td><td><span class="st st-done">Merged</span></td></tr>
+            <tr><td>4.9</td><td>Security-event records (IPs, request details) never deleted, not in the policy</td><td><span class="st st-done">Merged</span> 90-day window to confirm with counsel</td></tr>
+            <tr><td>—</td><td>ODPC registration, DPIA, lawful-basis decision, processor contracts</td><td><span class="st st-org">Organisational</span> not a code matter — brief written in <code>docs/LEGAL_REVIEW_BRIEF.md</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-3 caveats">
+        <div class="card"><h3>What is not claimed</h3><p>The document states plainly that nothing in it is a legal opinion or a certification, and that any client or regulator use must first be reviewed by a qualified Kenyan data-protection lawyer.</p></div>
+        <div class="card"><h3>What is not verified</h3><p>The state of the production database. The migration runner applies migrations at boot, so 026–029 <em>should</em> run on the next deploy — and the document refuses to record that as confirmed.</p></div>
+        <div class="card"><h3>What it does not cover</h3><p>Whether registration with the ODPC is required, any lawful-basis decision, DPIA conclusions, certification, a production threat model. Those need a lawyer, the regulator, or a proper assessment.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — posture -->
+  <section id="posture">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">03</span>
         <h2>Security posture — how it defends itself</h2>
         <span class="sec-tag">the platform sells security, so it runs on it</span>
       </div>
@@ -193,13 +267,13 @@
     </div>
   </section>
 
-  <!-- 03 — services -->
+  <!-- 04 — services + tooling -->
   <section id="services">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-no">03</span>
+        <span class="sec-no">04</span>
         <h2>Engagements I can run</h2>
-        <span class="sec-tag">each backed by a written methodology in the repo</span>
+        <span class="sec-tag">each backed by a written methodology and a script in the repo</span>
       </div>
 
       <div class="grid grid-2 svc">
@@ -238,18 +312,9 @@
           </ul>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- 04 — tooling -->
-  <section id="tooling">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-no">04</span>
-        <h2>Audit tooling I wrote</h2>
-        <span class="sec-tag">standalone, runs against your estate on day one</span>
-      </div>
-
+      <h3 class="sub-h">The scripts behind them</h3>
+      <p class="sub-p">Every tool is passive-first and non-destructive, and is written to be run only against systems you own or hold explicit written authorisation to test.</p>
       <div class="tools">
         <div class="tool"><code>auth_audit.py</code><span>Authentication flow audit</span></div>
         <div class="tool"><code>auth_audit_http.py</code><span>HTTP-layer auth checks</span></div>
@@ -262,15 +327,62 @@
         <div class="tool"><code>honeypot.js</code><span>Honeypot listener</span></div>
         <div class="tool"><code>report.js</code><span>Honeypot reporting pair</span></div>
       </div>
-      <p class="fineprint">Source: <code>tools/</code> in the repository.</p>
+      <h3 class="sub-h">What each tool does <em>not</em> catch</h3>
+      <p class="sub-p">This table is on my portfolio on purpose. Overselling coverage is precisely the gap that undermines trust in a security practice, so the stated limits are part of the offer.</p>
+      <div class="evid">
+        <table class="limits">
+          <caption class="sr-only">Declared coverage limits per tool</caption>
+          <thead>
+            <tr><th scope="col">Tool</th><th scope="col">Covers</th><th scope="col">Deliberately does not cover</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>auth_audit.py</code></td><td>TLS enforcement, security headers, cookie flags, JWT hygiene, login rate-limit signal</td><td>SQLi, XSS, business-logic flaws, CSRF, SSRF, or authenticated testing beyond one supplied token. A hygiene audit, <strong>not a penetration test</strong></td></tr>
+            <tr><td><code>network_audit.py</code></td><td>A capped list of 10 commonly-exposed ports (TCP-connect, not a stealth scan), SPF/DMARC, CAA, certificate expiry</td><td>Actual firewall rule configuration, VPN setup, internal segmentation, or anything outside those 10 ports. A clean scan is not a clean network</td></tr>
+            <tr><td><code>vuln_assessment.py</code></td><td>Exposed paths, version disclosure in headers, legacy TLS 1.0/1.1, <code>security.txt</code> presence</td><td>SQLi, XSS, auth bypass, business logic, active exploitation. Known false-positive risk on username-routed hosts — a FAIL is verified by hand before it reaches a client report</td></tr>
+            <tr><td><code>backup_audit.py</code></td><td>Backup posture from what is observable externally</td><td>Cloud-side encryption at rest (flagged <em>confirm manually</em> rather than guessed), retention policy, and whether backups are actually restorable — a question this tool cannot answer at all</td></tr>
+            <tr><td><code>honeypot.js</code> + <code>report.js</code></td><td>Detection and logging of intrusion attempts</td><td>Blocking, rate-limiting, or any action against an attacker. Detection only</td></tr>
+            <tr><td><code>llm_security_review.py</code></td><td>The OWASP LLM risks reachable through an external API test</td><td>The other six OWASP LLM categories — sensitive-information disclosure, supply chain, poisoning, excessive agency, embedding weaknesses, misinformation. None of them black-box</td></tr>
+            <tr><td><code>pqc_readiness.py</code></td><td>The public TLS handshake</td><td>Application-level cryptography or data at rest. Honestly the lowest-urgency service in the set, and sold as such</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fineprint">Source: <code>tools/README.md</code>. None of these nine tools is an active defence, by design. <code>auth_audit.py</code> also ships inside the product — the admin dashboard's Tools tab runs the same script with <code>--json</code> and records results in a <code>tool_runs</code> history table, so a lead asking for that service has a delivery path that is not someone typing in a terminal.</p>
     </div>
   </section>
 
-  <!-- 05 — evidence -->
-  <section id="evidence">
+  <!-- 05 — other builds -->
+  <section id="builds">
     <div class="wrap">
       <div class="sec-head">
         <span class="sec-no">05</span>
+        <h2>Also built</h2>
+        <span class="sec-tag">breadth, and how I hand work over</span>
+      </div>
+
+      <div class="grid grid-2 builds">
+        <article class="card">
+          <h3>AURORA</h3>
+          <p class="blurb">A large Python and TypeScript system — backend, separate frontend, docs and CI — built out end to end across <strong>173 commits</strong>. Off-domain from security; it is here because the same engineering discipline has to hold at scale on a codebase nobody is forcing it on.</p>
+          <p class="chips"><span>Python</span><span>TypeScript</span><span>Docker</span><span>173 commits</span><span>active to Oct 2026</span></p>
+          <a class="inline-link" href="https://github.com/sybertoooth7-lgtm/AURORA">github.com/sybertoooth7-lgtm/AURORA</a>
+        </article>
+
+        <article class="card">
+          <h3>Unclaimed Asset Recovery — client site</h3>
+          <p class="blurb">A static marketing site with an admin page and a Node server, built and shipped in a single day. What makes it worth showing is the handover: the README tells the business to connect the enquiry form to a secure backend, <strong>not to collect passwords, bank credentials or unnecessary identity documents through a web form</strong>, to add a real privacy policy, and to have the model reviewed by a Kenyan professional before going live.</p>
+          <p class="chips"><span>HTML</span><span>JavaScript</span><span>Node</span><span>same-day delivery</span></p>
+          <a class="inline-link" href="https://github.com/sybertoooth7-lgtm/Unclaimed_Asset_Discovery_Recovery_Agency_Website">view the handover notes</a>
+        </article>
+      </div>
+      <p class="fineprint">A fourth repository on this account, <code>ECC</code>, is a fork of someone else's project and is deliberately not presented as my work.</p>
+    </div>
+  </section>
+
+  <!-- 06 — evidence -->
+  <section id="evidence">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-no">06</span>
         <h2>Engineering evidence</h2>
         <span class="sec-tag">what a reviewer would check</span>
       </div>
@@ -296,11 +408,11 @@
     </div>
   </section>
 
-  <!-- 06 — gaps -->
+  <!-- 07 — gaps -->
   <section id="gaps">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-no">06</span>
+        <span class="sec-no">07</span>
         <h2>What I'd tell a client is still weak</h2>
         <span class="sec-tag">self-reported, from my own threat model</span>
       </div>
@@ -319,21 +431,79 @@
     </div>
   </section>
 
-  <!-- 07 — contact -->
+  <!-- 08 — contact -->
   <section id="contact" class="contact">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-no">07</span>
+        <span class="sec-no">08</span>
         <h2>Work with me</h2>
         <span class="sec-tag">assessments, incident response, or building the platform</span>
       </div>
-      <p class="lede">
-        Tell me the framework you have to satisfy, the system it applies to, and the date it's
-        due. I'll come back with what's realistic and what the evidence will look like at the end.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:sybertoooth7@gmail.com">sybertoooth7@gmail.com</a>
-        <a class="btn" href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">github.com/sybertoooth7-lgtm/ALUXPLAZA</a>
+
+      <div class="contact-grid">
+        <div>
+          <p class="lede">
+            Tell me the framework you have to satisfy, the system it applies to, and the date it's
+            due. I'll come back with what's realistic and what the evidence will look like at the end.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:sybertoooth7@gmail.com">sybertoooth7@gmail.com</a>
+            <a class="btn" href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">github.com/sybertoooth7-lgtm/ALUXPLAZA</a>
+          </div>
+          <p class="fineprint">
+            This page is static and has no server behind it, so the form below cannot send anything
+            on its own. It composes a pre-filled email in <em>your</em> mail app — nothing leaves
+            your machine, and nothing is stored or transmitted by me, until you press send there.
+            If that is a blocker for an engagement, that is worth knowing about me too: I would
+            rather tell you a form is not wired up than quietly post your enquiry to a third party.
+          </p>
+        </div>
+
+        <form id="enquiry" class="enquiry" novalidate>
+          <div class="field">
+            <label for="q-name">Your name <span aria-hidden="true">*</span></label>
+            <input id="q-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="q-org">Organisation</label>
+            <input id="q-org" name="org" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="q-service">What you need</label>
+            <select id="q-service" name="service">
+              <option>Incident response</option>
+              <option>Vulnerability assessment</option>
+              <option>Compliance readiness (DPA 2019 / PCI DSS)</option>
+              <option>Access-control audit</option>
+              <option>Network hardening review</option>
+              <option>Backup &amp; encryption review</option>
+              <option>Threat intelligence briefing</option>
+              <option>Honeypot monitoring</option>
+              <option>LLM / AI application security review</option>
+              <option>Post-quantum readiness</option>
+              <option>Building a security or compliance platform</option>
+              <option>Not sure yet — describing the problem</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-when">Timeframe</label>
+            <select id="q-when" name="when">
+              <option>As soon as possible</option>
+              <option>This month</option>
+              <option>This quarter</option>
+              <option>Planning / exploring</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-msg">The situation <span aria-hidden="true">*</span></label>
+            <textarea id="q-msg" name="message" rows="5" required placeholder="Framework, system, deadline — and what has already been tried."></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Draft the email</button>
+          <p class="form-status" id="q-status" role="status" aria-live="polite"></p>
+          <p class="mailto-fallback" id="q-fallback" hidden>
+            Nothing open? <a id="q-mailto" href="#">Use this link to draft the email</a>.
+          </p>
+        </form>
       </div>
     </div>
   </section>

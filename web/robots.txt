@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/sitemap.xml

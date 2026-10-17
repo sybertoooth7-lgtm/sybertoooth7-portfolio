@@ -55,4 +55,39 @@
     });
     io.observe(el);
   });
+
+  /* Enquiry form: static host, so it composes a mailto instead of submitting
+     anywhere. No enquiry content is stored or transmitted from this page. */
+  var form = document.getElementById('enquiry');
+  if (form) {
+    var status = document.getElementById('q-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      /* form.elements, not form.<name>: HTMLFormElement already owns a `name`
+         property, so form.name would silently return "" instead of the input. */
+      var f = form.elements;
+      var name = f.name.value.trim();
+      var message = f.message.value.trim();
+      if (!name || !message) {
+        status.textContent = 'Name and situation are both needed before this is worth sending.';
+        (!name ? f.name : f.message).focus();
+        return;
+      }
+      var lines = [message, '', '--', 'From: ' + name];
+      if (f.org.value.trim()) lines.push('Organisation: ' + f.org.value.trim());
+      lines.push('Need: ' + f.service.value, 'Timeframe: ' + f.when.value);
+      var subject = '[' + f.service.value + '] ' + name;
+      status.textContent = subject.length + message.length > 1800
+        ? 'That is long enough to be truncated by your mail app — shortening it will help.'
+        : 'Opening your mail app with the enquiry drafted. Nothing has been sent yet.';
+      var url = 'mailto:sybertoooth7@gmail.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join('\n'));
+      /* Some browsers block a scripted mailto, so leave a real link behind. */
+      var link = document.getElementById('q-mailto');
+      link.href = url;
+      document.getElementById('q-fallback').hidden = false;
+      window.location.href = url;
+    });
+  }
 })();
