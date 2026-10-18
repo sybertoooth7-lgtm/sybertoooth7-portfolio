@@ -500,6 +500,13 @@ td code { background: none; padding: 0; font-size: 12.5px; color: var(--ink-2); 
 }
 .toc-soft { color: var(--ink-3); font: 400 12px/1 var(--mono); }
 
+/* The months must add up to the commit count printed in §8, so the row that says
+   so is ruled off like a ledger total rather than left as one more month. */
+.cadence tr.total th[scope="row"],
+.cadence tr.total td { border-top: 1px solid var(--rule); padding-top: 6px; color: var(--ink); }
+.cadence tr.total td:nth-child(2) { font-weight: 600; }
+.cadence tr.total .mono { font-size: 11.5px; color: var(--ink-3); letter-spacing: .02em; }
+
 .log-side {
   margin-top: 30px;
   display: grid;
@@ -615,6 +622,7 @@ td code { background: none; padding: 0; font-size: 12.5px; color: var(--ink-2); 
 }
 .prompt { color: #7fbf9e; }
 .out { color: #b6ae9c; }
+.cmt { color: #6d7682; }
 
 .appendix {
   margin-top: 26px;
@@ -864,6 +872,7 @@ sup.fn a::after { content: "]"; }
   .cmds { background: #fff; color: #000; border: 1px solid #000; font-size: 8pt; }
   .prompt { color: #000; font-weight: 500; }
   .out { color: #444; }
+  .cmt { color: #666; }
   details.appendix { display: block; }
   details.appendix summary { display: none; }
   .appendix .seq { columns: 2; }

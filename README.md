@@ -20,7 +20,14 @@ someone who will check the claims.
 - **It records failed checks.** Neither deployment ALUXPLAZA's README documents is reachable
   today — the frontend returned HTTP 404 and the backend HTTP 503 from Render's own suspension
   page — so the site says that in its verification log instead of linking dead URLs as a live
-  demo. The cause of the suspension is recorded as unconfirmed rather than guessed at.
+  demo. The cause of the suspension is recorded as unconfirmed rather than guessed at. Two CI
+  jobs are red on `main` (`format` and `audit`), which is disclosed in the "still weak" section
+  rather than left for a reviewer to discover by clicking the badge.
+- **Figures are pinned to a commit, and re-pinned when they drift.** The masthead names the
+  ALUXPLAZA SHA every number was measured at. After a docs commit moved `main`, the counts were
+  re-measured and re-pinned, which also caught that the printed month-by-month cadence did not
+  sum to the printed total — Table 2 now carries a total row so that arithmetic cannot drift
+  silently again.
 
 ## Layout
 

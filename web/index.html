@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sybertoooth7 — security engineering &amp; compliance platforms</title>
-<meta name="description" content="Independent security engineer. Every figure on this page is a command you can run against the repository. ALUXPLAZA: 988 commits, 18,490 lines, one maintainer, thirteen weeks.">
+<meta name="description" content="Independent security engineer. Every figure on this page is a command you can run against the repository. ALUXPLAZA: 989 commits, 18,490 lines, one maintainer, thirteen weeks.">
 <meta name="author" content="sybertoooth7">
 <link rel="canonical" href="https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/">
 <meta name="theme-color" content="#f2efe8">
@@ -57,8 +57,8 @@
       <p class="mast-sub">Independent engineer · contract work · Kenya-focused</p>
       <dl class="mast-meta">
         <dt>Document set</dt><dd>17 October 2026</dd>
-        <dt>Revision</dt><dd>4 — coverage and outage figures</dd>
-        <dt>Source of all figures</dt><dd><a href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">ALUXPLAZA <span class="mono">@ 2a7786c</span></a></dd>
+        <dt>Revision</dt><dd>5 — figures re-pinned after a README correction</dd>
+        <dt>Source of all figures</dt><dd><a href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">ALUXPLAZA <span class="mono">@ 7cc2b42</span></a></dd>
         <dt>Status</dt><dd class="ok">Open to enquiries</dd>
       </dl>
     </div>
@@ -108,7 +108,7 @@
 
         <h3 class="at-a-glance-h">At a glance</h3>
         <dl class="glance">
-          <div><dt>Commits</dt><dd>988</dd><dt class="why">sole author, one merged commit<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup></dt></div>
+          <div><dt>Commits</dt><dd>989</dd><dt class="why">sole author, three names in the log<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup></dt></div>
           <div><dt>Application code</dt><dd>18,490 <span>lines</span></dd><dt class="why">JS · TS · JSX · TSX · Python · SQL</dt></div>
           <div><dt>Thirteen weeks</dt><dd>93 <span>days</span></dd><dt class="why">17 Jul — 17 Oct 2026</dt></div>
           <div><dt>Migrations</dt><dd>28</dd><dt class="why">001–029, numbering skips <code>008</code><sup class="fn"><a href="#fn2" id="fnref2">2</a></sup></dt></div>
@@ -164,8 +164,8 @@
         <h3>Verification log</h3>
         <dl class="checklist">
           <dt class="pass">Checked</dt>
-          <dd>Repository reachable on 17 Oct 2026. 988 commits, first commit 2026-07-17, one person
-            behind all of them.<sup class="fn"><a href="#fn1">1</a></sup></dd>
+          <dd>Repository reachable on 17 Oct 2026. 989 commits at <code>7cc2b42</code>, first commit
+            2026-07-17, one person behind all of them.<sup class="fn"><a href="#fn1">1</a></sup></dd>
           <dt class="fail">Not passing</dt>
           <dd>Neither deployment the README documents is reachable today. The frontend at
             <code>jinarous.vercel.app</code> returned <strong>HTTP 404</strong>; the backend at
@@ -282,10 +282,11 @@
           <caption><b>Table 2.</b> Commits by month, <code>git log --pretty=%ad --date=format:%Y-%m | sort | uniq -c</code>.</caption>
           <thead><tr><th scope="col">Month</th><th scope="col">Commits</th><th scope="col" class="bar-col">Share of the busiest month</th></tr></thead>
           <tbody>
-            <tr><th scope="row">2026-07</th><td>148</td><td class="bar-col"><span class="bar" style="--w:27.9%"></span></td></tr>
+            <tr><th scope="row">2026-07</th><td>149</td><td class="bar-col"><span class="bar" style="--w:28.1%"></span></td></tr>
             <tr><th scope="row">2026-08</th><td>530</td><td class="bar-col"><span class="bar" style="--w:100%"></span></td></tr>
             <tr><th scope="row">2026-09</th><td>167</td><td class="bar-col"><span class="bar" style="--w:31.5%"></span></td></tr>
-            <tr><th scope="row">2026-10 <span class="toc-soft">to the 17th</span></th><td>142</td><td class="bar-col"><span class="bar" style="--w:26.8%"></span></td></tr>
+            <tr><th scope="row">2026-10 <span class="toc-soft">to the 17th</span></th><td>143</td><td class="bar-col"><span class="bar" style="--w:27.0%"></span></td></tr>
+            <tr class="total"><th scope="row">Total</th><td>989</td><td class="bar-col"><span class="mono">must equal the count above</span></td></tr>
           </tbody>
         </table>
 
@@ -554,13 +555,18 @@
           not a paraphrase.</p>
 <pre class="cmds"><code><span class="prompt">$</span> cd ALUXPLAZA
 <span class="prompt">$</span> git rev-list --count HEAD
-<span class="out">988</span>
+<span class="out">989</span>
 <span class="prompt">$</span> git log --pretty=%ad --date=format:%Y-%m | sort | uniq -c
-<span class="out">148 2026-07  530 2026-08  167 2026-09  142 2026-10</span>
-<span class="prompt">$</span> git shortlog -sn HEAD
+<span class="out">149 2026-07  530 2026-08  167 2026-09  143 2026-10</span>
+<span class="prompt">$</span> git shortlog -sn HEAD          <span class="cmt">groups by name only</span>
 <span class="out">979  sybertoooth7-lgtm
   5  Alux Plaza Dev
-  4  sybertooth7-lgtm   ← see note 1</span>
+  5  sybertooth7-lgtm    ← see note 1</span>
+<span class="prompt">$</span> git log --pretty='%an|%ae' HEAD | sort | uniq -c
+<span class="out">979 sybertoooth7-lgtm|sybertoooth7@gmail.com
+  5 Alux Plaza Dev|dev@aluxplaza.com
+  4 sybertooth7-lgtm|sybertooth7@gmail.com
+  1 sybertooth7-lgtm|sybertoooth7@gmail.com</span>
 <span class="prompt">$</span> find backend/src frontend/src tools scripts -type f \
       \( -name '*.js' -o -name '*.jsx' -o -name '*.ts' -o -name '*.tsx' \
          -o -name '*.py' -o -name '*.sql' \) | xargs wc -l | tail -1
@@ -586,7 +592,7 @@
       https://alux-plaza-backend.onrender.com/api/health
 <span class="out">503</span>
 <span class="prompt">$</span> git ls-remote origin main
-<span class="out">2a7786c…  refs/heads/main</span></code></pre>
+<span class="out">7cc2b42…  refs/heads/main</span></code></pre>
         <p class="fineprint">One caveat on the OpenAPI figures, because it is the sort of thing a reviewer
           finds: <code>backend/openapi.yaml</code> defines 18 paths with 18 operations, and it does not
           set <code>operationId</code> on them. So “18 documented endpoints” is exactly true and
@@ -683,6 +689,17 @@
           <dd>The shield detects and logs, but does not coordinate a block across instances.</dd>
           <dt>Phase 4, architectural — no request correlation or tracing</dt>
           <dd>Events cannot yet be stitched into one attack narrative by trace ID.</dd>
+          <dt>Off the roadmap — CI is red on <code>main</code> right now</dt>
+          <dd>Two of the five workflows fail, and they were failing before the commit this page pins,
+            so this is not a docs-edit regression. <code>lint</code>, <code>typecheck</code> and
+            <code>test-backend</code> pass; <code>format</code> fails because
+            <code>prettier --check .</code> flags seven files — a formatting debt, not broken code — and
+            <code>audit</code> fails <code>npm audit --audit-level=high</code> on the frontend with 11
+            advisories, 8 of them high. Almost all of those are transitive, arriving through the
+            Tailwind/PostCSS chain plus <code>serialize-javascript</code> and
+            <code>source-map-js</code>. Most clear with <code>npm audit fix</code>; one needs a breaking
+            Tailwind 4 jump, which is why it is still open instead of merged in a hurry. A reviewer who
+            clicks the badge will find this in under a minute, which is why it is here.</dd>
         </dl>
         <p class="fineprint">Also honest: middleware ordering is not made explicit, and formal security
           regression tests are a named gap rather than a solved one. Nothing in the 26 test files
@@ -766,12 +783,17 @@
         <ol class="endnotes">
           <li id="fn1">
             <p>“Sole author” needs stating precisely, because <code>git shortlog -sn</code> returns three
-              names and a careless reader concludes the work was shared. It was not. 979 commits are
-              authored <code>sybertoooth7-lgtm &lt;sybertoooth7@gmail.com&gt;</code>, 4 as
-              <code>sybertooth7-lgtm</code> — the same person with one letter missing from the handle, from
-              a machine whose git identity was never corrected — and 5 as
+              names and a careless reader concludes the work was shared. It was not. Of the 989 commits on
+              <code>main</code>: 979 are authored <code>sybertoooth7-lgtm &lt;sybertoooth7@gmail.com&gt;</code>,
+              5 as <code>sybertooth7-lgtm</code> — the same person with one letter missing from the handle,
+              from a machine whose git identity was never corrected — and 5 as
               <code>Alux Plaza Dev &lt;dev@aluxplaza.com&gt;</code>, a project identity used in the early
-              weeks. No contributor outside those three identities appears in the history.
+              weeks. <code>shortlog -sn</code> groups by name, so it hides one detail worth showing: the
+              five <code>sybertooth7-lgtm</code> commits split across two addresses, four signed
+              <code>sybertooth7@gmail.com</code> and one — <code>5c8ef45</code>, “Add missing
+              lib/clientStatus.ts to fix the frontend build” — signed the correct address. The pair-level
+              command is printed in §8 for exactly that reason. Three names, four name-and-email pairs,
+              one person, and nobody outside them appears in the history.
               <a class="back" href="#fnref1">↩ back</a></p>
           </li>
           <li id="fn2">
