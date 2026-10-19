@@ -15,7 +15,7 @@
 <meta property="og:description" content="Independent security engineer. Every figure is a command you can run against the repository.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://sybertoooth7-lgtm.github.io/sybertoooth7-portfolio/">
-<meta property="article:modified_time" content="2026-10-17">
+<meta property="article:modified_time" content="2026-10-19">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,7 +57,7 @@
       <p class="mast-sub">Independent engineer · contract work · Kenya-focused</p>
       <dl class="mast-meta">
         <dt>Document set</dt><dd>17 October 2026</dd>
-        <dt>Revision</dt><dd>5 — figures re-pinned after a README correction</dd>
+        <dt>Revision</dt><dd>6 — documentation word count corrected (20,550 → 20,368, now with a command); §8 cross-reference fixed</dd>
         <dt>Source of all figures</dt><dd><a href="https://github.com/sybertoooth7-lgtm/ALUXPLAZA">ALUXPLAZA <span class="mono">@ 7cc2b42</span></a></dd>
         <dt>Status</dt><dd class="ok">Open to enquiries</dd>
       </dl>
@@ -96,7 +96,7 @@
         <h2 class="sr-only">Abstract</h2>
         <p class="first-line"><span class="drop">T</span>his is a portfolio that expects to be checked.
           Every number below was produced by a command against a public repository on a stated date,
-          and <a href="#evidence">§9</a> prints those commands so you can run them yourself. Where a
+          and <a href="#evidence">§8</a> prints those commands so you can run them yourself. Where a
           claim could not be checked, it is marked as unchecked rather than dropped quietly.</p>
         <p>What I do for a living is two things at once. I assess and harden systems — access control,
           network exposure, backup posture, incident readiness — against named standards rather than
@@ -115,7 +115,7 @@
           <div><dt>Tests</dt><dd>26 <span>+ 1 e2e</span></dd><dt class="why">Vitest + supertest against real Postgres</dt></div>
           <div><dt>Backend coverage</dt><dd>71 <span>per cent</span></dd><dt class="why">measured by Codecov, not by me</dt></div>
           <div><dt>Documented API</dt><dd>18 <span>operations</span></dd><dt class="why">over 18 paths, 17 route modules</dt></div>
-          <div><dt>Written methodology</dt><dd>20,550 <span>words</span></dd><dt class="why">10 service documents in <code>docs/</code></dt></div>
+          <div><dt>Written documentation</dt><dd>20,368 <span>words</span></dd><dt class="why">15 Markdown files in <code>docs/</code>, 10 of them service methodologies</dt></div>
           <div><dt>CI</dt><dd>5 <span>workflows</span></dd><dt class="why">CI, split backend/frontend, CodeQL, gitleaks</dt></div>
         </dl>
       </section>
@@ -540,7 +540,7 @@
             <tr><td>Automated tests</td><td>26 + 1</td><td>26 Vitest + supertest files against a real Postgres instance, no mocked persistence, plus a Playwright spec at <code>frontend/e2e/public-pages.spec.ts</code></td></tr>
             <tr><td>Backend line coverage</td><td>71%</td><td>Codecov, <code>main</code> badge — measured by CI, not by me. The upload is <code>flags: backend</code> over <code>backend/coverage/lcov.info</code>; there is no frontend coverage job, so 71% is the server half<sup class="fn"><a href="#fn4" id="fnref4">4</a></sup></td></tr>
             <tr><td>Documented API</td><td>18 operations</td><td><code>backend/openapi.yaml</code> over 18 paths; 17 route modules in <code>backend/src/routes/</code></td></tr>
-            <tr><td>Written methodology</td><td>20,550 words</td><td>10 files matching <code>docs/*-methodology.md</code>, plus the DPA mapping and breach procedure</td></tr>
+            <tr><td>Written documentation</td><td>20,368 words</td><td>15 files matching <code>docs/*.md</code>: 10 <code>*-methodology.md</code> service documents (7,473 words of the total), plus the DPA mapping, breach procedure, data-subject runbook, legal review brief and security risk review</td></tr>
             <tr><td>Continuous integration</td><td>5 workflows</td><td>CI, split backend/frontend CI, CodeQL, gitleaks</td></tr>
             <tr><td>Client routes</td><td>32 pages</td><td><code>frontend/src/pages/</code> — one file per route: portal, console, verification, public marketing</td></tr>
             <tr><td>Build-time guardrails</td><td>fail-fast env check</td><td><code>prebuild</code> runs <code>frontend/scripts/check-env.js</code>, refusing a production build with no API base URL</td></tr>
@@ -583,6 +583,10 @@
 <span class="out">32</span>
 <span class="prompt">$</span> ls .github/workflows/*.yml | wc -l
 <span class="out">5</span>
+<span class="prompt">$</span> cat docs/*.md | wc -w
+<span class="out">20368</span>
+<span class="prompt">$</span> ls docs/*.md | wc -l
+<span class="out">15</span>
 <span class="prompt">$</span> curl -s https://codecov.io/gh/sybertoooth7-lgtm/ALUXPLAZA/branch/main/graph/badge.svg \
       | grep -oE '&gt;[0-9]+%&lt;/text&gt;' | tail -1
 <span class="out">&gt;71%&lt;/text&gt;</span>
